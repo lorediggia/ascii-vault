@@ -51,7 +51,7 @@ $HOME
 ---
 
 ### ❯ Fastfetch Integration
-Update your config.jsonc to point to the vault output:
+Update your `config.jsonc` to point to the vault output:
 ```
 "logo": {
     "source": "~/.config/ascii-vault/logo.txt"
