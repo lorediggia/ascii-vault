@@ -1,1 +1,10 @@
-/target
+# Build Artifacts
+/target/
+
+# Data & State (Local tests)
+library.json
+config.json
+logo.txt
+
+# Atomic Write Leftovers
+*.tmp
