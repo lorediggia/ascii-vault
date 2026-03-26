@@ -4,7 +4,7 @@
 
 ---
 
-### ❯ Installation Patterns
+### ❯ Installation 
 
 #### 1. Via Cargo (Recommended)
 cargo install --git https://github.com/lorediggia/ascii-vault.git
