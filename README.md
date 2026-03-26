@@ -4,6 +4,10 @@
 
 ---
 
+### ❯ Prerequisites
+- Wayland Display Server
+- `wl-clipboard`
+  
 ### ❯ Installation 
 
 #### 1. Via Cargo (Recommended)
