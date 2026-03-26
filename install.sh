@@ -11,7 +11,10 @@ echo "◈ Fetching latest release from GitHub..."
 
 URL=$(curl -s https://api.github.com/repos/$REPO/releases/latest | \
       grep "browser_download_url" | \
-      cut -d '"' -f 4)
+      grep -v "source" | \
+      grep -v ".zip" | \
+      grep -v ".tar.gz" | \
+      cut -d '"' -f 4 | head -n 1)
 
 if [ -z "$URL" ]; then
     echo "✗ Error: No binary found in releases. Please check the repo URL or compile with cargo."
