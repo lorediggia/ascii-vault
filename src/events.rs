@@ -52,7 +52,13 @@ pub fn handle_input(app: &mut App) -> Result<bool> {
                 }
                 KeyCode::Char('i') if !app.items.is_empty() => {
                     let content = app.items[app.selected()].content.clone();
-                    app.status = match fs::write(&app.config.logo_file, &content) {
+                    let path = std::path::Path::new(&app.config.logo_file);
+                    
+                    if let Some(parent) = path.parent() {
+                        let _ = fs::create_dir_all(parent);
+                    }
+
+                    app.status = match fs::write(path, &content) {
                         Ok(_) => " ✓ Logo set! ".to_string(),
                         Err(e) => format!(" ✗ Error: {} ", e),
                     };

@@ -130,10 +130,14 @@ pub fn load_data(path: &str) -> Vec<AsciiItem> {
 }
 
 pub fn save_data(items: &[AsciiItem], path: &str) {
+    if let Some(parent) = std::path::Path::new(path).parent() {
+        let _ = fs::create_dir_all(parent);
+    }
+
     if let Ok(j) = serde_json::to_string_pretty(items) {
         let tmp_path = format!("{}.tmp", path);
         if fs::write(&tmp_path, &j).is_ok() {
-            let _ = fs::rename(&tmp_path, path);
+            let _ = fs::rename(&tmp_path, path); 
         }
     }
 }

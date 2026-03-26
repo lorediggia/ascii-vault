@@ -2,8 +2,12 @@ use crate::utils::{load_data, save_data};
 use ratatui::widgets::ListState;
 use serde::{Deserialize, Serialize};
 use std::fs;
+use std::path::Path;
 
-pub const CONFIG_PATH: &str = "/home/ren/.config/ascii-vault/config.json";
+fn get_config_path() -> String {
+    let home = std::env::var("HOME").unwrap_or_else(|_| ".".to_string());
+    format!("{}/.config/ascii-vault/config.json", home)
+}
 
 #[derive(Serialize, Deserialize, Clone)]
 pub struct AsciiItem {
@@ -19,17 +23,21 @@ pub struct Config {
 
 impl Default for Config {
     fn default() -> Self {
-        Config {
-            db_file: "/home/ren/Documenti/Rust/ascii-vault/library.json".to_string(),
-            logo_file: "/home/ren/Immagini/Logos/logo.txt".to_string(),
+        let home = std::env::var("HOME").unwrap_or_else(|_| ".".to_string());
+        let base_path = format!("{}/.config/ascii-vault", home);
+
+        Self {
+            db_file: format!("{}/library.json", base_path),
+            logo_file: format!("{}/logo.txt", base_path),
         }
     }
 }
 
 impl Config {
     pub fn load() -> Self {
-        if std::path::Path::new(CONFIG_PATH).exists() {
-            fs::read_to_string(CONFIG_PATH)
+        let path = get_config_path();
+        if Path::new(&path).exists() {
+            fs::read_to_string(&path)
                 .ok()
                 .and_then(|d| serde_json::from_str(&d).ok())
                 .unwrap_or_default()
@@ -37,14 +45,18 @@ impl Config {
             Config::default()
         }
     }
+
     pub fn save(&self) {
-        if let Some(p) = std::path::Path::new(CONFIG_PATH).parent() {
+        let path = get_config_path();
+        
+        if let Some(p) = Path::new(&path).parent() {
             let _ = fs::create_dir_all(p);
         }
+
         if let Ok(j) = serde_json::to_string_pretty(self) {
-            let tmp_path = format!("{}.tmp", CONFIG_PATH);
+            let tmp_path = format!("{}.tmp", path);
             if fs::write(&tmp_path, &j).is_ok() {
-                let _ = fs::rename(&tmp_path, CONFIG_PATH);
+                let _ = fs::rename(&tmp_path, &path);
             }
         }
     }
