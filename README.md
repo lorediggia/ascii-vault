@@ -22,7 +22,7 @@ mv ascii-vault ~/.local/bin/
 
 ### ❯ Keybindings
 
-| Action | Key | Logic Pattern |
+| Action | Key | Effect |
 | :--- | :--- | :--- |
 | **New Entry** | `n` | Create new buffer |
 | **Paste** | `v` | Sync from System Clipboard |
@@ -41,7 +41,7 @@ $HOME
 └─ .config
    └─ ascii-vault
       ├─ config.json   ── Runtime preferences
-      ├─ library.json  ── Vault database (Atomic)
+      ├─ library.json  ── Vault database 
       └─ logo.txt      ── Fastfetch source file
 
 ---
@@ -51,6 +51,3 @@ Update your config.jsonc to point to the vault output:
 "logo": {
     "source": "~/.config/ascii-vault/logo.txt"
 }
-
----
-Built with Rust & Ratatui • Transactional I/O Pattern
