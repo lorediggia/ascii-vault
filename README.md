@@ -7,17 +7,20 @@
 ### ❯ Installation 
 
 #### 1. Via Cargo (Recommended)
+```
 cargo install --git https://github.com/lorediggia/ascii-vault.git
-
+```
 #### 2. Via Curl Script (Automated)
+```
 curl -sSL https://raw.githubusercontent.com/lorediggia/ascii-vault/main/install.sh | bash
-
+```
 #### 3. Manual Binary
 Download from [Releases](https://github.com/lorediggia/ascii-vault/releases):
+```
 chmod +x ascii-vault
 mkdir -p ~/.local/bin
 mv ascii-vault ~/.local/bin/
-
+```
 ---
 
 ### ❯ Keybindings
@@ -36,18 +39,21 @@ mv ascii-vault ~/.local/bin/
 
 ---
 
-### ❯ Logic Paths
+### ❯ File Structure
+```
 $HOME
 └─ .config
    └─ ascii-vault
       ├─ config.json   ── Runtime preferences
       ├─ library.json  ── Vault database 
       └─ logo.txt      ── Fastfetch source file
-
+```
 ---
 
 ### ❯ Fastfetch Integration
 Update your config.jsonc to point to the vault output:
+```
 "logo": {
     "source": "~/.config/ascii-vault/logo.txt"
 }
+```
