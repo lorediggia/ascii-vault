@@ -1,24 +1,24 @@
-# ◈ Ascii-Vault
+# Ascii-Vault
 
 > A minimal, high-performance Rust TUI to vault ASCII art and dynamically inject terminal logos.
 
 ---
 
-### ❯ Prerequisites
+### Prerequisites
 - Wayland Display Server
 - `wl-clipboard`
   
-### ❯ Installation 
+### Installation 
 
-#### 1. Via Cargo (Recommended)
+#### Via Cargo 
 ```
 cargo install --git https://github.com/lorediggia/ascii-vault.git
 ```
-#### 2. Via Curl Script (Automated)
+#### Via Curl Script (Automated)
 ```
 curl -sSL https://raw.githubusercontent.com/lorediggia/ascii-vault/main/install.sh | bash
 ```
-#### 3. Manual Binary
+#### Manual Binary
 Download from [Releases](https://github.com/lorediggia/ascii-vault/releases):
 ```
 chmod +x ascii-vault
